@@ -1,3 +1,8 @@
 #buscar {
   padding-top: 2%;
 }
+
+#resultado {
+  height: 50%;
+  max-height: 50%;
+}

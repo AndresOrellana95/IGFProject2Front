@@ -2,41 +2,39 @@
   <div class="row">
     <form #busqueda="ngForm" autocomplete="off">
       <div class="row">
+        <div class="col s10 center-align">
+          <h4>Efectura préstamo</h4>
+        </div>
+      </div>
+      <div class="row">
         <div class="input-field col s2 offset-s1">
           <input type="text" name="codigo" [(ngModel)]="codigoE" required>
           <label for="codigo">Código de empleado:</label>
         </div>
-        <div id="buscar" class="col s2 offset-s2">
+        <div id="buscar" class="col s2">
           <button class="waves-effect waves-light btn" (click)="consultarEmpleado()">Buscar</button>
         </div>
-      </div>
-      <div class="row">
         <div class="col s3 offset-s1">
           <p>Empleado: {{empleado.fullname}}</p>
         </div>
       </div>
     </form>
+    <div class="divider"></div>
     <form #nuevoPrestamo="ngForm" autocomplete="off">
       <div class="row">
         <div class="input-field col s3 offset-s1">
           <input type="text" name="codigoP" [(ngModel)]="prestamo.code_loan" class="validate" required>
           <label for="codigoP">Código préstamo:</label>
         </div>
+        <div class="col s3 offset-s2">
+          <p>Fecha límite</p>
+          <ng-datepicker name="fechaLimite" [(ngModel)]="prestamo.deadline" [options]="dpOptions" required></ng-datepicker>
+        </div>
       </div>
       <div class="row">
         <div class="input-field col s3 offset-s1">
           <input type="text" name="cantidad" [(ngModel)]="prestamo.value" class="validate" required>
           <label for="cantidad">Cantidad:</label>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col s3 offset-s1">
-          <p>Fecha inicio</p>
-          <ng-datepicker name="fechaRealizacion" [(ngModel)]="prestamo.created" [options]="dpOptions" required></ng-datepicker>
-        </div>
-        <div class="col s3 offset-s2">
-          <p>Fecha límite</p>
-          <ng-datepicker name="fechaLimite" [(ngModel)]="prestamo.deadline" [options]="dpOptions" required></ng-datepicker>
         </div>
       </div>
       <div class="row">
@@ -48,10 +46,35 @@
         </div>
       </div>
       <div class="row">
-        <div class="col s3 offset-s1">
+        <div class="col s10 right-align">
           <button class="waves-effect waves-light btn" [disabled]="!nuevoPrestamo.form.valid" (click)="crearPrestamo()">Guardar</button>
         </div>
       </div>
     </form>
+  </div>
+</div>
+<!-- -->
+<div id="resultado" class="modal modal-fixed-footer" style="{ height:200px; }" materialize="modal" [materializeParams]="[{dismissible: false}]" [materializeActions]="modalResultados">
+  <div class="modal-content">
+    <div class="row">
+      <div class="col s6 offset-s1">
+        <p>Fecha de creación: {{prestamo.created}}</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col s6 offset-s1">
+        <p>Fecha de finalización: {{prestamo.deadline}}</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col s6 offset-s1">
+        <p>Cuota: ${{prestamo.fee}}</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col s6 right-align">
+        <button class="waves-effect waves-light btn" (click)="cerrarModal()">Ok</button>
+      </div>
+    </div>
   </div>
 </div>

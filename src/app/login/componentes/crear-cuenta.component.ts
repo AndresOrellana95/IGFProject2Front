@@ -37,15 +37,7 @@ export class CrearCuenta implements OnInit {
           Materialize.toast("Usuario creado", 3000, 'toastSuccess');
         },
         error => {
-          if(error.status == 422)
-          {
-              Materialize.toast("Error al realizar operación", 3000, "toastError");
-              window.location.href="./login";
-          }
-          else
-          {
-              Materialize.toast("Error al realizar operación", 3000, "toastError");
-          }
+          Materialize.toast("Error al realizar operación", 3000, "toastError");
         }
       );
     }

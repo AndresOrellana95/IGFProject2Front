@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { DataTableDirective } from 'angular-datatables';
 import { CookieService } from 'ngx-cookie';
 import { Subject } from 'rxjs/Rx';
+import * as moment from 'moment'
 import { DatepickerOptions } from 'ng2-datepicker'
 import { MaterializeDirective, MaterializeAction } from "angular2-materialize";
 import { ServicioPlanilla, Empleado, Prestamo, TipoPrestamo} from './../servicios';
@@ -24,6 +25,7 @@ export class CrearPrestamo implements OnInit {
   dpOptions: DatepickerOptions = {};
   tipo: TipoPrestamo;
   tipos: TipoPrestamo[];
+  modalResultados = new EventEmitter<string | MaterializeAction>();
 
   constructor(private servicioPlanilla: ServicioPlanilla,
     private route: ActivatedRoute,
@@ -32,7 +34,7 @@ export class CrearPrestamo implements OnInit {
   ) {
     this.dpOptions = {
       minYear: 1960,
-      displayFormat: 'MMM D[,] YYYY',
+      displayFormat: 'DD MM YYYY',
       barTitleFormat: 'MMMM YYYY',
       firstCalendarDay: 1
     };
@@ -45,6 +47,14 @@ export class CrearPrestamo implements OnInit {
     this.tipos = new Array<TipoPrestamo>();
     this.bandera = false;
     this.consultarTipos();
+  }
+
+  abrirModal() {
+    this.modalResultados.emit({action:"modal", params:['open']});
+  }
+
+  cerrarModal() {
+    this.modalResultados.emit({action:"modal", params:['close']});
   }
 
   consultarTipos() {
@@ -67,9 +77,11 @@ export class CrearPrestamo implements OnInit {
   crearPrestamo() {
     if(this.bandera == true) {
       this.servicioPlanilla.crearPrestamo(this.empleado.id,this.prestamo).subscribe(
-        message => {
+        prestamo => {
           this.bandera = false;
+          this.prestamo = prestamo;
           Materialize.toast("Prestamo creado", 3000, 'toastSuccess');
+          this.abrirModal();
         },
         error => {
           if(error.status == 422)

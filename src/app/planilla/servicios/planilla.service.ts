@@ -136,11 +136,13 @@ export class ServicioPlanilla {
       deadline: prestamo.deadline,
       value: prestamo.value
     });
-    console.log(prestamo.code_emp);
     return this.http.post(url, q, { headers: this.headers }).map(
       (response: Response) => {
         let r = response.json();
-        return r['message'];
+        prestamo.created = r['OriginDate'];
+        prestamo.deadline = r['DeadLine'];
+        prestamo.fee = r['fee'];
+        return prestamo;
       }
     );
   }
