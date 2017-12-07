@@ -1,0 +1,57 @@
+<div class="component">
+  <div class="row">
+    <form #busqueda="ngForm" autocomplete="off">
+      <div class="row">
+        <div class="input-field col s2 offset-s1">
+          <input type="text" name="codigo" [(ngModel)]="codigoE" required>
+          <label for="codigo">Código de empleado:</label>
+        </div>
+        <div id="buscar" class="col s2 offset-s2">
+          <button class="waves-effect waves-light btn" (click)="consultarEmpleado()">Buscar</button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col s3 offset-s1">
+          <p>Empleado: {{empleado.fullname}}</p>
+        </div>
+      </div>
+    </form>
+    <form #nuevoPrestamo="ngForm" autocomplete="off">
+      <div class="row">
+        <div class="input-field col s3 offset-s1">
+          <input type="text" name="codigoP" [(ngModel)]="prestamo.code_loan" class="validate" required>
+          <label for="codigoP">Código préstamo:</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s3 offset-s1">
+          <input type="text" name="cantidad" [(ngModel)]="prestamo.value" class="validate" required>
+          <label for="cantidad">Cantidad:</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col s3 offset-s1">
+          <p>Fecha inicio</p>
+          <ng-datepicker name="fechaRealizacion" [(ngModel)]="prestamo.created" [options]="dpOptions" required></ng-datepicker>
+        </div>
+        <div class="col s3 offset-s2">
+          <p>Fecha límite</p>
+          <ng-datepicker name="fechaLimite" [(ngModel)]="prestamo.deadline" [options]="dpOptions" required></ng-datepicker>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col s3 offset-s1">
+          <p>Tipo de prestamo</p>
+          <select class="browser-default" name="tipo" [(ngModel)]="prestamo.loantypes_id" required>
+            <option *ngFor="let tipo of tipos" value="{{tipo.id}}">{{tipo.name}}</option>
+          </select>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col s3 offset-s1">
+          <button class="waves-effect waves-light btn" [disabled]="!nuevoPrestamo.form.valid" (click)="crearPrestamo()">Guardar</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,5 @@
+export { aceptarCandidato } from './proceso-candidato.component'
+export { enProceso } from './aceptados-candidatos.component'
+export { componenteFinalistas } from './finalistas-candidatos.component'
+export { ContratarCandidato } from './contratar-candidato.component'
+export { CalificacionesCandidato } from './vista-calificaciones.component'

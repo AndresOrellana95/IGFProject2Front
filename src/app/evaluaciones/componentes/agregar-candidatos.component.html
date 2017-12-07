@@ -1,0 +1,51 @@
+<div class="component">
+  <div class="row">
+    <div class="col s9">
+      <div class="center-align"><h4>Control de candidatos</h4></div>
+      <table class="row-border hover" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Calificación</th>
+            <th>Guardar</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let candidato of candidatos">
+              <td>{{candidato.fullname}}</td>
+              <td>
+                <div *ngIf="candidato.grade == 0" class="input-field col s5">
+                  <input type="text" name="candidato.id" [(ngModel)]="candidato.grade"><label for="candiadto.id"></label>
+                </div>
+                <div *ngIf="candidato.grade != 0">
+                  <p>{{candidato.grade}}</p>
+                </div>
+              </td>
+              <td>
+                <button *ngIf="candidato.grade == 0" class="waves-effect waves-light btn" (click)="registrarNota(candidato)">Registrar</button>
+                <i *ngIf="candidato.grade != 0" class="material-icons">done_all</i>
+              </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <!-- Modals -->
+    <!-- Modal inscripcion
+    <div class="modal modal-fixed-footer" style="{ height:200px; }" materialize="modal" [materializeParams]="[{dismissible: false}]" [materializeActions]="modalConfirmarInscripcion">
+    <div class="modal-content">
+      <h5>Confirmar inscripcion</h5>
+      <p>¿Desea aceptar a: {{fullname}} para continuar con el proceso de reclutamiento?</p>
+      <div class="center-align">
+        <a class="btn waves-effect waves-light" (click)="actualizar('1')">Sí</a>
+        <a class="btn waves-effect waves-light" (click)="cerrarInscripcion()">No</a>
+      </div>
+    </div>
+  </div> -->
+
+  </div>
+  <div class="row">
+      <div class="col s9 right-align">
+        <a [routerLink]="['/evaluaciones/asignar/',evaluacionId]" class="waves-effect waves-light btn">Asignar candidatos</a>
+      </div>
+  </div>
+</div>

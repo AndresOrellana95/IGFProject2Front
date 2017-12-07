@@ -1,0 +1,73 @@
+<div class="component">
+  <div class="row">
+    <div class="col s9">
+      <div class="center-align"><h4>Evaluaciones</h4></div>
+      <table class="row-border hover" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Observaciones</th>
+            <th>Finalizar</th>
+            <th>Eliminar</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let evaluacion of evaluaciones">
+            <td><a [routerLink]="['/evaluaciones/']+evaluacion.id">{{evaluacion.name}}</a></td>
+            <td>{{evaluacion.observation}}</td>
+            <td><a (click)="abrirConfirmacionActualizar(evaluacion)"><i class="material-icons actualizar">repeat</i></a></td>
+            <td><a (click)="abrirConfirmacionEliminar(evaluacion)"><i class="material-icons borrar">delete</i></a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="left-align">
+    <!-- Modal Trigger -->
+    <a class="waves-effect waves-light btn col m3 s4 offset-m1 btnSelect" (click)="open()">Ingresar nueva evaluacion</a>
+    <!-- Modal form -->
+    <div class="modal modal-fixed-footer" materialize="modal" [materializeParams]="[{dismissible: false}]" [materializeActions]="modalIngresoEvaluacion">
+      <form class="col s12" autocomplete="off" #nuevaEvaluacionForm="ngForm" ngSubmit="crearEvaluacion(nuevaEvaluacionForm)">
+      <div class="modal-content">
+          <div class="row">
+            <div class="input-field col s8">
+              <input id="nombreEvaluacion" name="nombreEvaluacin" type="text" class="validate" [(ngModel)]="evaluacion.name" required>
+              <label for="nombreEvaluacion">Nombre de la evaluacion</label>
+            </div>
+          </div>
+          <div class="input-field col s8">
+            <textarea id="textarea1" name="observation" class="materialize-textarea" [(ngModel)]="evaluacion.observation" required></textarea>
+            <label for="textarea1">Observaciones: </label>
+          </div>
+          <div class="row">
+            <div class="align-right">
+              <button (click)="crearEvaluacion(nuevaEvaluacionForm)" class="waves-effect waves-light btn" [disabled]="!nuevaEvaluacionForm.form.valid">Guardar</button>
+              <button class="waves-effect waves-light btn" (click)="close()">Cancelar</button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <!-- endpoint modal-->
+
+  <!-- modal eliminar -->
+  <div class="modal modal-fixed-footer" style="{ height:200px; }" materialize="modal" [materializeParams]="[{dismissible: false}]" [materializeActions]="modalConfirmacionEvaluacion">
+  <div class="modal-content">
+    <h5>Eliminar evaluacion</h5>
+    <p>¿Desea eliminar la evaluacion: {{name}}?</p>
+    <a class="btn waves-effect waves-light" (click)="eliminar()">Sí</a>
+    <a class="btn waves-effect waves-light" (click)="cerrarConfirmacionEliminar()">No</a>
+  </div>
+  </div>
+  <!-- modal actualizar -->
+  <div class="modal modal-fixed-footer" style="{ height:200px; }" materialize="modal" [materializeParams]="[{dismissible: false}]" [materializeActions]="modalConfirmacionActualizar">
+  <div class="modal-content">
+    <h5>Estado de la evaluacion</h5>
+    <p>¿Desea finalizar la evaluacion {{name}}?</p>
+    <a class="btn waves-effect waves-light" (click)="actualizar()">Sí</a>
+    <a class="btn waves-effect waves-light" (click)="cerrarConfirmacionActualizar()">No</a>
+  <!--endpoint modal -->
+  </div>
+  </div>
+</div>

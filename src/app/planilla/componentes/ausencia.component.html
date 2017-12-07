@@ -1,0 +1,48 @@
+<div class="component">
+  <div class="row">
+    <form #busqueda="ngForm" autocomplete="off">
+      <div class="input-field col s2 offset-s1">
+        <input type="text" name="codigo" required>
+        <label for="codigo">Código de empleado:</label>
+      </div>
+      <div id="buscar" class="col s2 offset-s2">
+        <button class="waves-effect waves-light btn" (click)="buscarEmpleado()">Buscar</button>
+      </div>
+    </form>
+  </div>
+  <div class="row">
+    <div class="col s3 offset-s1">
+      <p>Empleado: {{empleado.nombre}}</p>
+    </div>
+  </div>
+  <div class="col s8">
+    <table id="ausenciaEmpleado" class="row-border hover" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+      <thead>
+        <tr>
+          <th>Día</th>
+          <th>Rázon</th>
+          <th>Exonerar</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let ausencia of empleado.asistencia">
+          <td>{{ausencia.fecha}}</td>
+          <td>{{ausencia.observacion}}</td>
+          <td>
+            <a class="waves-effect waves-light red" (click)="open(true)"><i class="material-icons">check</i></a>
+            <a class="waves-effect waves-light red" (click)="open(false)" ><i class="material-icons">clear</i></a>
+          </td>
+        <tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<!-- -->
+<div class="modal modal-fixed-footer" style="{ height:200px; }" materialize="modal" [materializeParams]="[{dismissible: false}]" [materializeActions]="modalConfirmacion">
+<div class="modal-content">
+  <h5>Confirmar acción</h5>
+  <p>¿Está seguro de realizar está operación?</p>
+  <a class="btn waves-effect waves-light" (click)="realizarAccion()">Sí</a>
+  <a class="btn waves-effect waves-light" (click)="cerrar()">No</a>
+</div>
+</div>

@@ -1,0 +1,26 @@
+<div class="component">
+  <form class="col s9" autocomplete="off" #login="ngForm">
+    <div class="row">
+      <div class="center-align">
+        <h4>Inicio de sesión</h4>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s5 offset-s3">
+        <input class="validate" name="usuario" [(ngModel)]="usuarioTemp.correo" type="text" required>
+        <label for="usuario">Correo</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s5 offset-s3">
+        <input class="validate" name="contra" type="password" [(ngModel)]="usuarioTemp.contra" required>
+        <label for="contra">Contraseña</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="center-align">
+        <button  [disabled]="!login.form.valid" (click)="iniciarSesion()" class="waves-effect waves-light btn">Iniciar sesión</button>
+      </div>
+    </div>
+  </form>
+</div>

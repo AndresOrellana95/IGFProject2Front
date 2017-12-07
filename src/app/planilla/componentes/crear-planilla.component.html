@@ -1,0 +1,42 @@
+<div class="component">
+  <div class="row">
+    <div class="center-align">
+      <h4>Calculo de planilla</h4>
+    </div>
+  </div>
+  <form #formPlanilla="ngForm" autocomplete="off">
+    <div class="section">
+      <div class="row">
+        <div class="input-field col s4 offset-s3">
+          <input type="text" name="nombre" [(ngModel)]="pago.name" class="validate" required>
+          <label for="nombre">Nombre de planilla</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col s2 offset-s3">
+          <p>Fecha de calculo:</p>
+          <ng-datepicker name="fecha" [options]="dpOptions" [(ngModel)]="pago.datePay" required></ng-datepicker>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col s2 offset-s3">
+        <p>Tipo de salario</p>
+        <select name="tiposalario" [(ngModel)]="pago.salaryType_id" class="browser-default" required>
+          <option *ngFor="let tipo of tipos" value="{{tipo.id}}">{{tipo.name}}</option>
+        </select>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col s4 offset-s3">
+        <p>Descripción:</p>
+        <textarea name="descripcion" [(ngModel)]="pago.description" required></textarea>
+      </div>
+    </div>
+    <div class="row">
+      <div class="center-align">
+        <button class="waves-effect waves-light btn" [disabled]="!formPlanilla.form.valid" (click)="generarPlanilla()">Generar planilla</button>
+      </div>
+    </div>
+  </form>
+</div>

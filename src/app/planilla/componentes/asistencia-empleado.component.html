@@ -1,0 +1,75 @@
+<div class="component">
+  <div class="row">
+    <form #busqueda="ngForm" autocomplete="off">
+      <div class="input-field col s2 offset-s1">
+        <input type="text" name="codigo" required>
+        <label for="codigo">Código de empleado:</label>
+      </div>
+      <div id="buscar" class="col s2 offset-s2">
+        <button class="waves-effect waves-light btn" (click)="buscarEmpleado()">Buscar</button>
+      </div>
+    </form>
+  </div>
+  <div class="row">
+    <div class="col s3 offset-s1">
+      <p>Empleado: {{empleado.nombre}}</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col s9">
+      <table id="asistenciaEmpleado" class="row-border hover" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+        <thead>
+          <tr>
+            <th>Día</th>
+            <th>Entrada</th>
+            <th>Salida</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let asistencia of empleado.asistencia">
+            <td>{{asistencia.fecha}}</td>
+            <td>{{asistencia.entrada}}</td>
+            <td>{{asistencia.salida}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col s3 offset-s1">
+      <button (click)="abrir()" class="waves-effect waves-light btn">Ingresar</button>
+    </div>
+  </div>
+</div>
+<div class="modal modal-fixed-footer" materialize="modal" [materializeParams]="[{dismissible: false}]" [materializeActions]="modalIngreso">
+  <form class="col s12" autocomplete="off" #nuevaAsistencia="ngForm">
+    <div class="modal-content">
+        <div class="row">
+          <div class="input-field col s6">
+            <label>Fecha:</label>
+            <!--<datepicker name="fecha" type="text" class="validate" [(ngModel)]="asistencia.date" required></datepicker>-->
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s3">
+            <label for="">Hora entrada: </label>
+            <input name="hentrada" type="time" class="validate" [(ngModel)]="asistencia.hentrada" required>
+          </div>
+        </div>
+        <div class="row">
+          <div class="align-center">
+          <div class="input-field col s3">
+            <label>Hora salida:</label>
+            <input name="hsalida" type="time" class="validate" [(ngModel)]="asistencia.hsalida" required>
+          </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="align-right">
+            <button (click)="nuevaAsistencia()" class="waves-effect waves-light btn" [disabled]="!nuevaAsistencia.form.valid">Guardar</button>
+            <button class="waves-effect waves-light btn" (click)="cerrar()">Cancelar</button>
+          </div>
+        </div>
+      </div>
+  </form>
+</div>

@@ -1,0 +1,63 @@
+<div class="component">
+  <form #busqueda="ngForm" autocomplete="off">
+    <div class="row">
+      <div class="input-field col s2 offset-s1">
+        <input type="text" name="codigo" required>
+        <label for="codigo">Código de empleado:</label>
+      </div>
+      <div id="buscar" class="col s2 offset-s2">
+        <button class="waves-effect waves-light btn" (click)="buscarEmpleado()">Buscar</button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col s2 offset-s1">
+        <label>Mes:</label>
+        <select class="browser-default" name="mes" required>
+          <option value="1">Enero</option>
+          <option value="2">Febrero</option>
+          <option value="3">Marzo</option>
+          <option value="4">Abril</option>
+          <option value="5">Mayo</option>
+          <option value="6">Junio</option>
+          <option value="7">Julio</option>
+          <option value="8">Agosto</option>
+          <option value="9">Septiembre</option>
+          <option value="10">Octubre</option>
+          <option value="11">Noviembre</option>
+          <option value="12">Diciembre</option>
+        </select>
+      </div>
+      <div class="col s3 offset-s2">
+        <div class="input-field col s6">
+          <input type="text" name="anio" class="validate" required>
+          <label for="anio">Año</label>
+        </div>
+      </div>
+      <div class="col s3 offset-s1">
+        <label>Período:</label>
+        <select name="tiempo" class="browser-default">
+          <option value="0">Quincenal</option>
+          <option value="1">Mensual</option>
+        </select>
+      </div>
+    </div>
+  </form>
+  <div class="col s6 offset-s1">
+    <table id="tablaResumen" class="row-border hover" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+      <thead>
+        <tr>
+        <th>Fecha<th>
+        <th>Hora de entrada<th>
+        <th>Hora de salida<th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let asistencia of empleado.asistencia">
+          <td>{{asistencia.fecha}}</td>
+          <td>{{asistencia.hentrada}}</td>
+          <td>{{asistencia.hsalida}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

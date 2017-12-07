@@ -1,0 +1,79 @@
+<div class="component">
+  <div class="row">
+    <div class="col s9">
+      <div class="center-align"><h4>Impuestos</h4></div>
+      <table id="impuestosTotales" class="row-border hover" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Cliente</th>
+            <th>Patron</th>
+            <th>Roof</th>
+            <th>Eliminar</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let impuesto of impuestos">
+            <td>{{impuesto.name}}</td>
+            <td>{{impuesto.client}}</td>
+            <td>{{impuesto.patron}}</td>
+            <td>{{impuesto.roof}}</td>
+            <td><a (click)="abrirConfirmacion(impuesto)"><i class="material-icons borrar">delete</i></a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="left-align">
+    <!-- Modal Trigger -->
+    <a class="waves-effect waves-light btn col m3 s4 offset-m1 btnSelect" (click)="open()">Ingresar nuevo impuesto</a>
+    <!-- Modal form -->
+    <div class="modal modal-fixed-footer" materialize="modal" [materializeParams]="[{dismissible: false}]" [materializeActions]="modalIngreso">
+      <form class="col s12" id="crearImpuesto" autocomplete="off" #nuevoImpuestoForm="ngForm" ngSubmit="crearImpuesto(nuevoImpuestoForm)">
+      <div class="modal-content">
+          <div class="row">
+            <div class="input-field col s6">
+              <input id="impuestoName" name="impuestoName" type="text" class="validate" [(ngModel)]="impuesto.name" required>
+              <label for="impuestoName">Nombre del impuesto</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s3">
+              <input id="clienteImpuesto" name="clienteImpuesto" name="client" type="text" class="validate" [(ngModel)]="impuesto.client" required>
+              <label for="clienteImpuesto">Cliente</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="align-center">
+            <div class="input-field col s3">
+              <input id="patronImpuesto" name="patronImpuesto" type="text" class="validate" [(ngModel)]="impuesto.patron" required>
+              <label for="patronImpuesto">Patron</label>
+            </div>
+            <div class="input-field col s3">
+              <input id="roofImpuesto" name="roofImpuesto" type="text" class="validate" [(ngModel)]="impuesto.roof" required>
+              <label for="roofImpuesto">Roof</label>
+            </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="align-right">
+              <button (click)="crearImpuesto()" class="waves-effect waves-light btn" [disabled]="!nuevoImpuestoForm.form.valid">Guardar</button>
+              <button class="waves-effect waves-light btn" (click)="close()">Cancelar</button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <!-- endpoint modal-->
+
+  <!-- modal eliminar -->
+  <div class="modal modal-fixed-footer" style="{ height:200px; }" materialize="modal" [materializeParams]="[{dismissible: false}]" [materializeActions]="modalConfirmacion">
+  <div class="modal-content">
+    <h5>Eliminar impuesto</h5>
+    <p>¿Desea eliminar el impuesto: {{name}}?</p>
+    <a class="btn waves-effect waves-light" (click)="eliminar()">Sí</a>
+    <a class="btn waves-effect waves-light" (click)="cerrarConfirmacion()">No</a>
+  <!--endpoint modal -->
+  </div>
+</div>

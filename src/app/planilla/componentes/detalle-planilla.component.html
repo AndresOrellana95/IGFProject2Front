@@ -1,0 +1,36 @@
+<div class="component">
+  <div class="row">
+    <table class="row-border hover" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Código</th>
+          <th>Salario base</th>
+          <th>Relación</th>
+          <th>ISSS</th>
+          <th>Impuesto</th>
+          <th>Renta</th>
+          <th>Prestamos</th>
+          <th>Otros D(-)</th>
+          <th>Otros I(+)</th>
+          <th>Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let pago of pagos">
+          <td><a (click)="redireccionar(pago)">{{pago.name}}</a></td>
+          <td>{{pago.code}}</td>
+          <td>{{pago.baseSalary}}</td>
+          <td>{{pago.bond}}</td>
+          <td>{{pago.isss}}</td>
+          <td>{{pago.pension}}</td>
+          <td>{{pago.rent}}</td>
+          <td>{{pago.loans}}</td>
+          <td>{{pago.othersDiscounts}}</td>
+          <td>{{pago.othersIncomes}}</td>
+          <td>{{pago.total}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

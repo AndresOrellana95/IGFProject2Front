@@ -1,0 +1,32 @@
+<div class="component">
+  <div class="row">
+    <div class="center-align">
+      <h4>Lista de candidatos sin evaluación pendiente</h4>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col s8 offset-s1">
+      <table class="row-border hover" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Asignar</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let candidato of candidatos">
+            <td *ngIf="candidato.state == 1">{{candidato.fullname}}</td>
+            <td *ngIf="candidato.state == 1">
+              <input type="checkbox" [value]="candidato.id" (change)="controlArreglo($event)" name="{{candidato.id}}" id="{{candidato.id}}"><label for="{{candidato.id}}"></label>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col s3 offset-s1">
+      <button (click)="asignarCandidatoEvaluacion()" class="waves-effect waves-light btn">Guardar cambios</button>
+    </div>
+  </div>
+</div>

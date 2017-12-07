@@ -1,0 +1,5 @@
+export { Asistencia } from './asistencia'
+export { ServicioAsistencia } from './asistencia.service'
+export { Empleado } from './empleado'
+export { Retiro } from './retiro'
+export { ServicioEmpleado } from './empleado.service'
