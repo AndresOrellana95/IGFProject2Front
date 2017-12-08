@@ -41,7 +41,14 @@ export class IngresoAsistencia implements OnInit{
   }
 
   guardarAsistencia() {
-    console.log(this.fileData);
+    this.servicioAsistencia.actualizarAsistencias(this.id, this.fileData).subscribe(
+      message => {
+        Materialize.toast("Datos guardados correctamente",3000,"toastSuccess");
+      },
+      error => {
+        Materialize.toast("Error al asignar los datos",3000,"toastError");
+      }
+    );
   }
 
   openFile(event) {

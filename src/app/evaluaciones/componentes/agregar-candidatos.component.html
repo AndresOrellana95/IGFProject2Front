@@ -14,16 +14,16 @@
           <tr *ngFor="let candidato of candidatos">
               <td>{{candidato.fullname}}</td>
               <td>
-                <div *ngIf="candidato.grade == 0" class="input-field col s5">
+                <div *ngIf="candidato.state == 2" class="input-field col s5">
                   <input type="text" name="candidato.id" [(ngModel)]="candidato.grade"><label for="candiadto.id"></label>
                 </div>
-                <div *ngIf="candidato.grade != 0">
+                <div *ngIf="candidato.state != 2">
                   <p>{{candidato.grade}}</p>
                 </div>
               </td>
               <td>
-                <button *ngIf="candidato.grade == 0" class="waves-effect waves-light btn" (click)="registrarNota(candidato)">Registrar</button>
-                <i *ngIf="candidato.grade != 0" class="material-icons">done_all</i>
+                <button *ngIf="candidato.state == 2" class="waves-effect waves-light btn" (click)="registrarNota(candidato)">Registrar</button>
+                <i *ngIf="candidato.state != 2" class="material-icons">done_all</i>
               </td>
           </tr>
         </tbody>

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { IngresoAsistencia, RetiroEmpleado, ConsultaAsistencia } from './componentes'
+import { IngresoAsistencia, RetiroEmpleado, ConsultaAsistencia, NuevaAsistencia } from './componentes'
 import { AutenticacionGuard } from './../login'
 
 const routes: Routes = [
@@ -16,13 +16,17 @@ const routes: Routes = [
         component: RetiroEmpleado
       },
       {
-        path:'detalle_asistencia',
+        path:'ingreso_asistencia',
         children: [
           {
             path:':id',
             component: IngresoAsistencia
           }
         ]
+      },
+      {
+        path:'crear_asistencia',
+        component:NuevaAsistencia
       }
     ]
   }

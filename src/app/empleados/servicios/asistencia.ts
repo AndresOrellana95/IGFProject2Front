@@ -3,10 +3,9 @@ export class Asistencia {
   name: string;
   date: Date;
   description: string;
-  month:string;
-  year: string;
-  division: number;
+  month:number;
+  year: number;
+  divison: number;
   type:string;
   typeId:number;
-  divisionId: number;
 }

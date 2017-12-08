@@ -17,6 +17,7 @@ export class agregarCandidato implements OnInit {
   candidato: Candidato;
   evaluacion: Evaluacion;
   candidatos: Candidato[];
+  auxiliar: Candidato[];
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject();
 
@@ -54,6 +55,7 @@ export class agregarCandidato implements OnInit {
   ngOnInit(){
     this.candidato = new Candidato;
     this.candidatos = new Array<Candidato>();
+    this.auxiliar = new Array<Candidato>();
     this.evaluacionId = this.route.snapshot.params['id'];
     this.llenarTabla();
   }
@@ -74,6 +76,7 @@ export class agregarCandidato implements OnInit {
       this.servicioCandidato.asignarNota(this.evaluacionId,candidato.id, candidato.grade).subscribe(
         message => {
           Materialize.toast("Transaccion realizada", 3000, "toastSuccess");
+          candidato.state = 1;
         },
         error => {
           Materialize.toast("Error al modificar los datos", 3000, "toastError");

@@ -50,7 +50,7 @@ export class ServicioAsistencia {
             asistencia.id = _asistencia['id'];
             asistencia.name = _asistencia['name'];
             asistencia.type = _asistencia['type'];
-            asistencia.division = _asistencia['division'];
+            asistencia.divison = _asistencia['divison'];
 
             asistencias.push(asistencia);
         });
@@ -58,4 +58,34 @@ export class ServicioAsistencia {
       }
     );
   }
+
+  crearResumen(asistencia: Asistencia): Observable<string>{
+    let url = this.baseUrl + '/attendances';
+    let q = JSON.stringify({
+      name: asistencia.name,
+      month: asistencia.month,
+      year: asistencia.year,
+      salarytype_id: asistencia.typeId,
+      divison: asistencia.divison
+    });
+    console.log(q);
+    return this.http.post(url, q, { headers: this.headers }).map(
+      (response: Response) => {
+        let r = response.json();
+        return r['message'];
+      }
+    );
+  }
+
+  actualizarAsistencias(id: number, colleccion: any): Observable<string>{
+    let url = this.baseUrl + '/attendances/' + id;
+
+    return this.http.put(url,colleccion,{headers:this.headers}).map(
+      (response: Response) => {
+        let r = response.json();
+        return r['message'];
+      }
+    );
+  }
+
 }

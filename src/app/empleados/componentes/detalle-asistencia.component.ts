@@ -13,10 +13,7 @@ declare var $: any;
   templateUrl: './consulta-asistencia.component.html'
 })
 
-export class ConsultaAsistencia implements OnInit{
-  asistencia: Asistencia;
-  asistencias: Asistencia[];
-
+export class DetalleAsistencia implements OnInit{
   constructor(
     private servicioAsistencia: ServicioAsistencia,
     private route: ActivatedRoute,
@@ -26,20 +23,7 @@ export class ConsultaAsistencia implements OnInit{
   }
 
   ngOnInit() {
-    this.asistencia = new Asistencia;
-    this.asistencias = new Array<Asistencia>();
-    this.obtenerAsistencias();
+    
   }
 
-  obtenerAsistencias() {
-    this.servicioAsistencia.obtenerAsistencias().subscribe(
-      asistencias => {
-        this.asistencias = asistencias;
-      }
-    );
-  }
-
-  crearResumenAsistencia() {
-
-  }
 }

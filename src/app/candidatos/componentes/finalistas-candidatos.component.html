@@ -13,7 +13,7 @@
           <tr *ngFor="let candidato of candidatos">
             <td *ngIf="candidato.state == 3">{{candidato.fullname}}</td>
             <td *ngIf="candidato.state == 3">
-              <a (click)="abrirInscripcion(candidato)"><i class="material-icons aceptar">check</i></a>
+              <a [routerLink]="['/candidatos/contratar',candidato.id]"><i class="material-icons aceptar">check</i></a>
               <a (click)="abrirRechazo(candidato)"><i class="material-icons rechazar">clear</i></a>
             </td>
           </tr>

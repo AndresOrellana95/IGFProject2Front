@@ -86,6 +86,7 @@ export class AsignarCandidato implements OnInit {
     this.servicioCandidato.asignarCandidatoEvaluacion(this.idE, this.ids).subscribe(
       message => {
         Materialize.toast("Bien",3000,"toastSuccess");
+        this.router.navigate(['/evaluaciones/',this.idE]);
       }
     );
   }

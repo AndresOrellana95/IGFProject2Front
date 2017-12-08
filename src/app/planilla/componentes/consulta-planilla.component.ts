@@ -20,6 +20,7 @@ export class ConsultaPlanilla implements OnInit{
   planillas: Pago[];
   tipo: TipoSalario;
   tipos: TipoSalario[];
+  asistencias: any = {};
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject();
 
@@ -60,12 +61,21 @@ export class ConsultaPlanilla implements OnInit{
     this.tipos = new Array<TipoSalario>();
     this.consultarTipoSalario();
     this.consultarPlanillas();
+    //this.consultarListaAsistencias();
     //this.asignarTipos();
   }
 
+  /*consultarListaAsistencias() {
+    this.servicioPlanilla.getListaAsistencias().subscribe(
+      lista => {
+        this.asistencias = lista;
+      }
+    );
+  }*/
+
   redireccionar(planilla: Pago) {
     //Por defecto es false en el metodo
-    if(planilla.state == true){
+    if(planilla.calculated == true){
       this.router.navigate(['/planilla/'+ planilla.id]);
     }
     else
@@ -73,12 +83,6 @@ export class ConsultaPlanilla implements OnInit{
       Materialize.toast("Debe generar los datos de planilla previamente",3000,"toastError");
     }
   }
-
-  /*asignarTipos() {
-    this.planillas.forEach((_planilla) => {
-      alert("deberia");
-    });
-  }*/
 
   consultarTipoSalario() {
     this.servicioPlanilla.obtenerTipoSalario().subscribe(
@@ -97,15 +101,15 @@ export class ConsultaPlanilla implements OnInit{
   }
 
   calcularPlanilla(planilla: Pago) {
-    planilla.state = true;
-    /*this.servicioPlanilla.calcularPlanilla(planilla.id).subscribe(
+    this.servicioPlanilla.calcularPlanilla(planilla.id).subscribe(
       message => {
         Materialize.toast("Planilla calculada con exito", 3000, "toastSuccess");
+        this.planilla.calculated = true;
       },
       error => {
         Materialize.toast("Ha ocurrido un error al realizar la operación", 3000, "toastError");
       }
-    );*/
+    );
   }
 
 }

@@ -7,5 +7,6 @@ export class Planilla {
   month: string;
   year: number;
   employee: Empleado[];
+  calculated: boolean;
   pay: Pago[];
 }

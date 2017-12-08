@@ -54,10 +54,11 @@ export class CrearPlanilla implements OnInit{
     );
   }
 
-  generarPlanilla(planilla: Pago) {
-    this.servicioPlanilla.crearPlanilla(planilla).subscribe(
+  generarPlanilla() {
+    this.servicioPlanilla.crearPlanilla(this.pago).subscribe(
       message => {
         Materialize.toast("Registro de planilla creada", 3000, "toastSuccess");
+        this.router.navigate(['/planilla/']);
       },
       error => {
         Materialize.toast("Error al realizar la operación",3000 ,"toastError");

@@ -1,0 +1,44 @@
+<div class="component">
+  <div class="row">
+    <div class="col s10 center-align">
+      <h4>Nuevo resumen de asistencia</h4>
+    </div>
+  </div>
+  <form autocomplete="off" #crearResumenAsistencia="ngForm">
+    <div class="row">
+      <div class="input-field col s5 offset-s2">
+        <input type="text" name="nombre" [(ngModel)]="asistencia.name" required>
+        <label for="nombre">Nombre</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col s5 offset-s2">
+        <p>Tipo de salario:</p>
+        <select name="tipo" [(ngModel)]="asistencia.typeId" class="browser-default" required>
+          <option *ngFor="let tipoSalario of tiposSalario" value="{{tipoSalario.id}}">{{tipoSalario.name}}</option>
+        </select>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col s5 offset-s2">
+        <p>Quincena:</p>
+        <select class="browser-default" name="division" [(ngModel)]="asistencia.divison" required>
+          <option value="1">Primera</option>
+          <option value="2">Segunda</option>
+        </select>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col s5 offset-s2">
+        <p>Elija una fecha para asignar mes y año</p>
+        <input type="date" name="fecha" [(ngModel)]="fecha" required>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col s8 right-align">
+        <button class="btn waves-effect waves-light" [disabled]="!crearResumenAsistencia.form.valid" (click)="crearResumen()">Crear</button>
+        <button class="btn waves-effect waves-light" (click)="cerrar()">Cancelar</button>
+      </div>
+    </div>
+  </form>
+</div>

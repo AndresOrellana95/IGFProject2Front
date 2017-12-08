@@ -35,6 +35,7 @@ export class CrearCuenta implements OnInit {
       this.servicioUsuario.crearUsuario(this.usuario).subscribe(
         message => {
           Materialize.toast("Usuario creado", 3000, 'toastSuccess');
+          this.router.navigate(['/login/']);
         },
         error => {
           Materialize.toast("Error al realizar operación", 3000, "toastError");

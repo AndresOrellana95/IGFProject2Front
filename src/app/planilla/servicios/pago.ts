@@ -7,6 +7,7 @@ export class Pago {
   datePay: Date;
   update: Date;
   amount: number;
+  calculated: boolean;
   salaryType_id: number;
   type: string;
   state: boolean;

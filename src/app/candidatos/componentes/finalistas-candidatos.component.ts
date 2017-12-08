@@ -83,7 +83,7 @@ export class componenteFinalistas implements OnInit{
   }
 
   redireccionar(){
-    this.router.navigate(['/candidatos/contratar'],{ queryParams: {id: this.candidato.id}});
+    this.router.navigate(['/candidatos/contratar/'],{ queryParams: {id: this.candidato.id}});
   }
 
   actualizar(state: number){

@@ -17,8 +17,8 @@
             <td>{{planilla.description}}</td>
             <td>{{planilla.type}}</td>
             <td>{{planilla.datePay}}</td>
-            <td *ngIf="planilla.state == false"><button (click)="calcularPlanilla(planilla)" class="waves-effect waves-button btn">Generar</button></td>
-            <td *ngIf="planilla.state == true">Calculos completos</td>
+            <td *ngIf="planilla.calculated == false"><button (click)="generarPlanilla(planilla)" class="waves-effect waves-button btn">Generar</button></td>
+            <td *ngIf="planilla.calculated == true">Calculos completos</td>
           </tr>
         </tbody>
       </table>

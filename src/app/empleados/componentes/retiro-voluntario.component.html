@@ -29,14 +29,16 @@
       </div>
     </div>
     <div class="row">
-      <div class="col s3 offset-s1">
-        <p>Fecha de ingreso {{retiro.dateIn}}</p>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col s3 offset-1">
-        <p>Fecha salida</p>
-        <ng-datepicker name="final" [options]="dpOptions" [(ngModel)]="retiro.dateOut" required></ng-datepicker>
+      <div class="col s10 offset-s1">
+        <div class="input-field col s3 offset-1">
+          <p>Fecha salida</p>
+          <input type="date" name="final" [(ngModel)]="retiro.dateOut" required>
+        </div>
+        <div class="col s3 offset-s2">
+          <br>
+          <br>
+          <p>Fecha de ingreso {{retiro.dateIn}}</p>
+        </div>
       </div>
     </div>
     <div class="row">

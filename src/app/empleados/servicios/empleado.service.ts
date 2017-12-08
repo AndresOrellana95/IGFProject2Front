@@ -4,7 +4,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import { environment } from './../../../environments/environment';
 import { CookieService } from 'ngx-cookie';
-import { Empleado, Retiro } from './';
+import { Empleado, Retiro, TipoSalario } from './';
 
 @Injectable()
 
@@ -18,6 +18,26 @@ export class ServicioEmpleado {
   ) {
     this.baseUrl = environment.apiURL;
     this.headers = new Headers({ 'Content-Type': 'application/json' });
+  }
+
+  obtenerTipoSalario(): Observable<TipoSalario[]> {
+    let url = this.baseUrl + '/salaries';
+
+    return this.http.get(url, { headers: this.headers }).map(
+      (response: Response) => {
+        let r = response.json();
+        let tiposalarios = new Array<TipoSalario>();
+
+        r.forEach((_tiposalario) => {
+          let tiposalario = new TipoSalario;
+          tiposalario.id = _tiposalario['id'];
+          tiposalario.name = _tiposalario['name'];
+
+          tiposalarios.push(tiposalario);
+        });
+        return tiposalarios;
+      }
+    );
   }
 
   registrarDespido(id: number, retiro: Retiro): Observable<Retiro>{

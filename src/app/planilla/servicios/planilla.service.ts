@@ -76,6 +76,22 @@ export class ServicioPlanilla {
     );
   }
 
+  /*getListaAsistencias(): Observable<any>{
+    /*let url = this.baseUrl + "/attendances";
+    return this.http.get(url, {headers: this.headers}).map(
+      (response: Response) => {
+        let r = response.json();
+        let temp = r['Attendances'];
+        let a = new Array<any>();
+        temp.forEach((_value) => {
+          a.id = _value['id'];
+          a.name = _value['name'];
+        });
+        return a;
+      }
+    );
+  }*/
+
   consultarPlanillas():Observable<Pago[]> {
     let url = this.baseUrl + "/pays";
     return this.http.get(url, {headers: this.headers}).map(
@@ -89,9 +105,7 @@ export class ServicioPlanilla {
           planilla.name = _planilla['name'];
           planilla.description = _planilla['description'];
           planilla.datePay = _planilla['datePay'];
-          //Cambiar luego
-          planilla.state = false;
-
+          planilla.calculated = _planilla['calculated'];
           planillas.push(planilla);
         });
         console.log(planillas);
@@ -155,7 +169,7 @@ export class ServicioPlanilla {
       datePay: pago.datePay,
       salarytype_id: pago.salaryType_id
     });
-
+    console.log(q);
     return this.http.post(url, q, {headers: this.headers}).map(
       (response: Response) => {
         let r = response.json();
