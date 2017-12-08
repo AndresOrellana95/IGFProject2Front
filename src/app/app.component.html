@@ -29,26 +29,35 @@
   </li>
   <li>
     <ul>
-    <li><a materialize="dropdown" class='dropdown-button'  data-activates='dropdown2'>Candidatos<i class="material-icons right">arrow_drop_down</i></a></li>
-    <ul id="dropdown2" class="dropdown-content">
+      <li>
+        <a materialize="dropdown" class='dropdown-button'  data-activates='dropdown2'>Candidatos<i class="material-icons right">arrow_drop_down</i></a>
+      </li>
+      <ul id="dropdown2" class="dropdown-content">
       <li><a>Candidatos</a></li>
-      <li><a routerLink="/candidatos">Aceptación de candidatos</a></li>
-      <li><a routerLink="/candidatos/reclutamiento">Candidatos en proceso</a></li>
-      <li><a routerLink="/candidatos/calificaciones">Calificaciones generales</a></li>
-      <li><a routerLink="/candidatos/finalistas">Contratamiento</a></li>
-    </ul>
+        <li><a routerLink="/candidatos">Aceptación de candidatos</a></li>
+        <li><a routerLink="/candidatos/reclutamiento">Candidatos en proceso</a></li>
+        <li><a routerLink="/candidatos/calificaciones">Calificaciones generales</a></li>
+        <li><a routerLink="/candidatos/finalistas">Contratamiento</a></li>
+      </ul>
     </ul>
   </li>
   <li>
     <ul>
-      <li><a materialize="dropdown" class="dropdown-button" data-activates='dropdown3'>Planilla</a></li>
+      <li><a materialize="dropdown" class="dropdown-button" data-activates='dropdown3'>Empleados</a></li>
       <ul id="dropdown3" class="dropdown-content">
+        <li><a>Empleados</a></li>
+        <li><a routerLink="/empleados">Asistencias</a></li>
+        <li><a routerLink="/empleados/retiro">Retiro de empleado</a></li>
+      </ul>
+    </ul>
+  </li>
+  <li>
+    <ul>
+      <li><a materialize="dropdown" class="dropdown-button" data-activates='dropdown4'>Planilla</a></li>
+      <ul id="dropdown4" class="dropdown-content">
         <li><a>Planilla</a></li>
         <li><a routerLink="/planilla">Consulta de planillas</a></li>
         <li><a routerLink="/prestamo">Prestamos</a></li>
-        <li><a routerLink="/asistencia/resumen">Consulta de asistencia</a></li>
-        <li><a routerLink="/asistencia/ingreso">Importar archivo de asistencias</a></li>
-        <li><a routerLink="/asistencia/ausencia">Inasistencias</a></li>
       </ul>
     </ul>
   </li>

@@ -7,7 +7,7 @@ import { DataTablesModule } from 'angular-datatables';
 import { NgDatepickerModule } from 'ng2-datepicker'
 import { EmpleadoRoutingModule } from './empleado-routing.module';
 import { ServicioAsistencia, ServicioEmpleado } from './servicios';
-import { IngresoAsistencia, RetiroEmpleado } from './componentes';
+import { IngresoAsistencia, RetiroEmpleado, ConsultaAsistencia } from './componentes';
 
 
 @NgModule({
@@ -22,7 +22,8 @@ import { IngresoAsistencia, RetiroEmpleado } from './componentes';
   ],
   declarations: [
     IngresoAsistencia,
-    RetiroEmpleado
+    RetiroEmpleado,
+    ConsultaAsistencia
   ],
   providers: [
     ServicioAsistencia,

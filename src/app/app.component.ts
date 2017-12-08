@@ -8,8 +8,7 @@ import { Router } from '@angular/router';
 })
 
 export class AppPrincipal {
-  usuario = "Usuario temporal"
-
+  usuario: string;
   constructor(
     private router: Router
   ) { }

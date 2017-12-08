@@ -2,4 +2,42 @@
   <div class="row">
     <div class="center-align"><h4>Importacion de archivo</h4></div>
   </div>
+  <form>
+    <div class="row">
+      <p>Subir archivo de asistencias</p>
+      <input type="file" name="file" accept=".log" (change)="openFile($event)" required>
+    </div>
+    <div class="row">
+      <div class="col s10 right-align">
+        <button class="waves-effect waves-light btn" (click)="guardarAsistencia()"></button>
+      </div>
+    </div>
+  </form>
+  <div class="row">
+    <div class="col s10">
+      <table class="row-border hover" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+        <thead>
+          <tr>
+            <th>Código de empleado</th>
+            <th>Fecha</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let row of fileData">
+            <td>{{row.code}}</td>
+            <td>{{row.fecha}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<div id="espera" class="modal modal-fixed-footer" style="{ height:200px; }" materialize="modal" [materializeParams]="[{dismissible: false}]" [materializeActions]="modalResultados">
+  <div class="modal-content">
+    <div class="row">
+      <div class="col s6 offset-s1">
+        <p>Espere mientras se cargan los datos</p>
+      </div>
+    </div>
+  </div>
 </div>
